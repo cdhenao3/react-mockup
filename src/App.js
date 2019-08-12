@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, Redirect } from 'react-router-dom'
+import NavBar from './Components/NavBar'
+import Logo from './Components/Logo'
+import Filter from './Components/Filter'
+import Builing from './Components/Building';
+import Home from './Components/Home';
 
-function App() {
+import snake from './assets/logo.png'
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content">
+      <div className="left-content">
+        <Logo logo={snake}/>
+        <Filter />
+      </div>
+      <div className="right-content">
+        <NavBar/>
+        <Switch>
+          <Route path="/home" component={Home}/>
+          <Route path="/messages" component={Builing}/>
+          <Route path="/wishlist" component={Builing}/>
+          <Route path="/settings" component={Builing}/>
+          <Route path="/my-account" component={Builing}/>
+          <Redirect from="/" to="/home"/>
+        </Switch>
+        
+      </div>
     </div>
   );
 }
-
-export default App;
